@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+:root {
+    --admin-sidebar-width: 240px;
+}
+
+.admin-body {
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: var(--admin-sidebar-width);
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+    z-index: 1040;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar .nav-link.active {
+    font-weight: 600;
+}
+
+.admin-content {
+    min-width: 0;
+    min-height: 100vh;
+}
+
+.sidebar-backdrop {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    #admin-wrapper.sidebar-open .sidebar {
+        transform: translateX(0);
+    }
+
+    .sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1035;
+        display: none;
+    }
+
+    #admin-wrapper.sidebar-open .sidebar-backdrop {
+        display: block;
+    }
+}
